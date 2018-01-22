@@ -11,8 +11,10 @@ public class UI_control : MonoBehaviour {
     {
         Instance = this;
     }
+
     private ClientBehavior client;
     public Text text_Nickname;
+    public InputField inField;
     public string nickname;
     [SerializeField]
     private ChatLogBehavior clb;
@@ -57,14 +59,6 @@ public class UI_control : MonoBehaviour {
     public void OnMessage(string value)
     {
         JSONObject j = new JSONObject(value);
-        /*
-        string s1 = "";
-        for (int i = 0; i < j.Count; i++)
-            s1 += j[i].str + " :: ";
-        s1 = s1.Substring(0, s1.Length - 4);
-        clb.OnReceiveMessage(value);
-        clb.OnReceiveMessage(s1);
-        */
         if (j[0].str == "SYSTEM")
         {
             if (j[1].str == "ID")
@@ -99,5 +93,25 @@ public class UI_control : MonoBehaviour {
         j.Add("LIST");
         j.Add(client.clientID.ToString());
         client.Send(j.ToString());
+    }
+
+    public void TextSend()
+    {
+        string s = inField.text;
+        if (s.Length < 1 || client.clientID < 0) // ignore empty strings
+            return;
+
+        JSONObject j = JSONObject.obj;
+        j.Add("MESSAGE");
+        j.Add(nickname);
+        j.Add(client.clientID.ToString());
+        j.Add(s);
+        string ss = j.ToString();
+        if (client.Send(j.ToString()))
+            inField.text = "";
+
+        // by default, Unity releases focus on the inputfield after pressing enter
+        inField.ActivateInputField(); // keep the focus
+
     }
 }

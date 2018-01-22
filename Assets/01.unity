@@ -170,6 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Instance: {fileID: 0}
   text_Nickname: {fileID: 650498269}
+  inField: {fileID: 275548358}
   nickname: 
   clb: {fileID: 1857245882}
   goOn:
@@ -455,7 +456,6 @@ GameObject:
   - component: {fileID: 275548360}
   - component: {fileID: 275548359}
   - component: {fileID: 275548358}
-  - component: {fileID: 275548361}
   m_Layer: 5
   m_Name: ChatInput
   m_TagString: Untagged
@@ -532,9 +532,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 275548361}
-        m_MethodName: OnEndEdit
-        m_Mode: 0
+      - m_Target: {fileID: 43848163}
+        m_MethodName: TextSend
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -590,19 +590,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 275548356}
---- !u!114 &275548361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 275548356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc1bf09a792f44087b9895f945f9c951, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  client: {fileID: 0}
-  text_chat: {fileID: 1857245880}
 --- !u!1 &414427792
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,7 +1177,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 275548361}
+      - m_Target: {fileID: 0}
         m_MethodName: set_alias
         m_Mode: 0
         m_Arguments:
